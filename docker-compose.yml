@@ -1,0 +1,14 @@
+version: '3.0'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MARIADB_USER: etl_user
+    volumes:
+      - ./data/init.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./data/dibujo.sql:/docker-entrypoint-initdb.d/2.sql
+    ports:
+      - "3306:3306"
